@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wordloom/src/lexicon.dart';
+import 'package:wordloom/src/lists/list_library.dart';
+import 'package:wordloom/src/lists/prefs_list_vault.dart';
+import 'package:wordloom/src/ui/wordloom_app.dart';
 
-void main() {
-  runApp(const WordloomApp());
-}
-
-class WordloomApp extends StatelessWidget {
-  const WordloomApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Wordloom',
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Wordloom')),
-        body: const Center(child: Text('Wordloom')),
-      ),
-    );
-  }
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final lexicon = await AssetLexicon.load();
+  final prefs = await SharedPreferences.getInstance();
+  final library = ListLibrary(vault: PrefsListVault(prefs));
+  await library.load();
+  runApp(WordloomApp(lexicon: lexicon, library: library));
 }
