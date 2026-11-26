@@ -2,6 +2,8 @@
 
 A local workshop for pattern search, letter search, and saved word lists. The dictionary ships with the app and stays on the device.
 
+**Download:** [latest release](https://github.com/alexalghisi/wordloom/releases/latest)
+
 Pattern mode treats `?` as one unknown letter. `c?t` returns cat, cot, and cut.
 
 Letter mode returns words you can spell from the letters you type. `listen` returns listen, silent, enlist, tinsel, inlets, and the shorter words that fit those letters.
